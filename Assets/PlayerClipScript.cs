@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerClipScript : MonoBehaviour
 {
     public int clipTag;
+    public int playerTag;
     bool isActive;
     GameManager gm;
 
@@ -28,7 +29,7 @@ public class PlayerClipScript : MonoBehaviour
     {
         if (isActive)
         {
-            gm.StartPanelSelect(clipTag);
+            gm.StartPanelSelect(clipTag,playerTag);
             isActive = false;
         }
     }
