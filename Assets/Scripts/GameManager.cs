@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
             i.SetID(j);
             j++;
         }
+        playerAmmount = activePlayers.Length;
         allTilesOnField = FindObjectsOfType<EmptyPanelScript>();
         j = 0;
         foreach (var i in allTilesOnField)
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+
         activePlayers[0].StartTurn();
     }
 
@@ -43,22 +45,39 @@ public class GameManager : MonoBehaviour
     {
         SetActivePanel(activePlayers[currentPlayerID].GetClipCoord(currentPlayerClipTag), false);
         activePlayers[currentPlayerID].MoveClip(allTilesOnField[tileTag].GetCoord(), currentPlayerClipTag);
+        StartPanelSelect(currentPlayerID + 1);
     }
 
-    public void StartPanelSelect(int playerClipTag, int playerTag)
+    public void MoveClipWithoutEndingTurn(int tileTag)
+    {
+        SetActivePanel(activePlayers[currentPlayerID].GetClipCoord(currentPlayerClipTag), false);
+        activePlayers[currentPlayerID].MoveClip(allTilesOnField[tileTag].GetCoord(), currentPlayerClipTag);
+    }
+
+    public void ActivatePanel(int panelTag)
+    {
+        allTilesOnField[panelTag].SetActive(true);
+    }
+
+    public void StartPanelSelect(int playerTag)
     {
         currentPlayerID = playerTag;
-        currentPlayerClipTag = playerClipTag;
-        SetActivePanel(activePlayers[playerTag].GetClipCoord(playerClipTag), true);
+        if (currentPlayerID == playerAmmount) currentPlayerID = 0;
+        foreach (PlayerClipScript i in activePlayers[currentPlayerID].clips)
+        {
+            SetActivePanel(i.GetCoord(), true);
+        }
     }
+        
     
     void SetActivePanel(Vector3 coord, bool tmp)
     {
-        Collider2D[] tilesToMove = Physics2D.OverlapCircleAll(coord, 2, LayerMask.GetMask("Panel"));
-        foreach (Collider2D i in tilesToMove)
+        foreach(EmptyPanelScript i in allTilesOnField)
         {
-            i.GetComponent<EmptyPanelScript>().SetActive(tmp);
-            Debug.Log(i.GetComponent<EmptyPanelScript>().GetTag());
+            if (Vector3.Distance(i.GetCoord(), coord)<2)
+            {
+                i.SetActive(tmp);
+            }
         }
     }
 

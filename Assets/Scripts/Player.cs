@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
         int j = 0;
         foreach (PlayerClipScript i in clips)
         {
-            i.SetActive(false);
             i.SetTag(j);
             j++;
         }
@@ -34,7 +33,7 @@ public class Player : MonoBehaviour
         {
             i.SetActive(false);
         }
-        gm.StartPanelSelect(playerClipTag, playerID);
+        gm.StartPanelSelect(playerClipTag);
     }
 
     public void MoveClip(Vector3 newCoord, int playerClipTag)

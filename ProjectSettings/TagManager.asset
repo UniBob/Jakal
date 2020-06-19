@@ -42,7 +42,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: panel
+  - name: Panel
     uniqueID: 2702008403
     locked: 0
   - name: clip

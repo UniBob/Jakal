@@ -5,16 +5,16 @@ using UnityEngine;
 public class EmptyPanelScript : MonoBehaviour
 {
     [SerializeField] Vector3 coord;
-
     [SerializeField] int panelTag;
     [SerializeField] bool isActive;
+
     GameManager gm;
 
 
     private void Start()
     {
         isActive = false;
-        gm = GetComponent<GameManager>();
+        gm = FindObjectOfType<GameManager>();
         coord = transform.position;
     }
 
@@ -22,8 +22,7 @@ public class EmptyPanelScript : MonoBehaviour
     {
         if (isActive)
         {
-            isActive = false;
-            
+            isActive = false;            
             gm.StartClipSelect(panelTag);
         }
     }
@@ -31,7 +30,7 @@ public class EmptyPanelScript : MonoBehaviour
     public void SetActive(bool tmp)
     {
         isActive = tmp;
-        Debug.Log(tmp);
+       // Debug.Log(tmp);
         GetComponent<BoxCollider2D>().enabled = tmp;
     }
 

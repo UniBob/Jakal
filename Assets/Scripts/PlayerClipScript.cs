@@ -53,8 +53,9 @@ public class PlayerClipScript : MonoBehaviour
     {
         return coord;
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(coord, 2);
-    //}
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(coord, 2);
+    }
 }
