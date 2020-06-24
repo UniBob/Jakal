@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //  public GameObject[] tilesToRandom;
-    //  public GameObject playerPrefab;
+  //  public GameObject[] tilesToRandom;
+  //  public GameObject playerPrefab;
 
-    [SerializeField] PanelsInfo pI;
     EmptyPanelScript[] allTilesOnField;
     Player[] activePlayers;
     int currentPlayerID;
@@ -55,13 +54,9 @@ public class GameManager : MonoBehaviour
         activePlayers[currentPlayerID].MoveClip(allTilesOnField[tileTag].GetCoord(), currentPlayerClipTag);
     }
 
-    public void ActivatePanel(Vector3 coord)
+    public void ActivatePanel(int panelTag)
     {
-        foreach (var i in allTilesOnField)
-        {
-            if (i.GetCoord() == coord)
-                i.SetActive(true);
-        }
+        allTilesOnField[panelTag].SetActive(true);
     }
 
     public void StartPanelSelect(int playerTag)
