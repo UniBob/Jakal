@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //  public GameObject[] tilesToRandom;
-    //  public GameObject playerPrefab;
-
     [SerializeField] PanelsInfo pI;
     EmptyPanelScript[] allTilesOnField;
     Player[] activePlayers;
@@ -16,29 +13,38 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        activePlayers = FindObjectsOfType<Player>();
-        int j = 0;
-        foreach(var i in activePlayers)
-        {
-            i.SetID(j);
-            j++;
-        }
-        playerAmmount = activePlayers.Length;
+        PlayerStart();
+        PanelStart();
+        StartGame();
+        
+    }
+
+    void PanelStart()
+    {
         allTilesOnField = FindObjectsOfType<EmptyPanelScript>();
-        j = 0;
+        int j = 0;
         foreach (var i in allTilesOnField)
         {
             i.SetTag(j);
             i.SetActive(false);
             j++;
         }
-        StartGame();
-        
+    }
+
+    void PlayerStart()
+    {
+        activePlayers = FindObjectsOfType<Player>();
+        int j = 0;
+        foreach (var i in activePlayers)
+        {
+            i.SetID(j);
+            j++;
+        }
+        playerAmmount = activePlayers.Length;
     }
 
     void StartGame()
     {
-
         activePlayers[0].StartTurn();
     }
 
@@ -60,20 +66,22 @@ public class GameManager : MonoBehaviour
         foreach (var i in allTilesOnField)
         {
             if (i.GetCoord() == coord)
+            {
                 i.SetActive(true);
+                break;
+            }
         }
     }
 
     public void StartPanelSelect(int playerTag)
     {
         currentPlayerID = playerTag;
-        if (currentPlayerID == playerAmmount) currentPlayerID = 0;
+        if (currentPlayerID >= playerAmmount) currentPlayerID = 0;
         foreach (PlayerClipScript i in activePlayers[currentPlayerID].clips)
         {
             SetActivePanel(i.GetCoord(), true);
         }
     }
-        
     
     void SetActivePanel(Vector3 coord, bool tmp)
     {
@@ -85,6 +93,5 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    
+        
 }

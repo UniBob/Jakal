@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PanelsInfo : ScriptableObject
 {
-    [SerializeField] GameObject[] tilesToRandom;
-    [SerializeField] GameObject[] tilesPrefab;
+    [SerializeField] List<GameObject> tilesToRandom;
+    [SerializeField] GameObject playerPrefab;
+    [SerializeField] int playersCount;
 }
