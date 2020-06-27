@@ -41,7 +41,6 @@ public class PlayerClipScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-
         if (isActive)
         {
             isActive = false;
