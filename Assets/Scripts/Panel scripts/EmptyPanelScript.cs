@@ -33,6 +33,8 @@ public class EmptyPanelScript : MonoBehaviour
     {
         isActive = tmp;
         GetComponent<BoxCollider2D>().enabled = tmp;
+        if (tmp) GetComponent<SpriteRenderer>().color = Color.green;
+        else GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public bool GetActive()
