@@ -7,7 +7,7 @@ public class EmptyPanelScript : MonoBehaviour
     [SerializeField] int panelTag;
     [SerializeField] bool isActive;
     [SerializeField] bool isWater;
-    [SerializeField] GameObject panelOption;
+    [SerializeField] TileEffect panelOption;
     
     GameManager gm;
     Vector3 coord;

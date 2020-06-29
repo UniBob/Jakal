@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowPanelScript : MonoBehaviour
+class ArrowPanelScript : TileEffect, MonoBehaviour
 {
     [SerializeField] Vector3[] directions;
 

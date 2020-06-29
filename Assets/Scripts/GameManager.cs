@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int rightX = 6;
     [SerializeField] int upY = 6;
     [SerializeField] int downY = -6;
-    Dictionary<Vector3, EmptyPanelScript> allTilesOnField = new Dictionary<Vector3, EmptyPanelScript>;
+    Dictionary<Vector3, EmptyPanelScript> allTilesOnField = new Dictionary<Vector3, EmptyPanelScript>();
     Player[] activePlayers;
     int currentPlayerID;
     int playerAmmount;
