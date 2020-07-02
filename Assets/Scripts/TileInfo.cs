@@ -4,10 +4,11 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Info")]
 
-public class PanelsInfo : ScriptableObject
+public class TileInfo : ScriptableObject
 {
-    public List<EmptyPanelScript> tilesToRandom;
-    public List<GameObject> allTiles;
+    public List<EmptyTileScript> tilesToRandom;
+    public List<EmptyTileScript> allTiles;
     [SerializeField] GameObject playerPrefab;
     [SerializeField] int playersCount;
 }
+

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClipScript : MonoBehaviour
+public class TileEffect : MonoBehaviour
 {
-   
+    public void RunTileEffect()
+    {
+
+    }
+
 }
