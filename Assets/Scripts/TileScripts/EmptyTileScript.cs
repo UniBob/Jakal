@@ -8,18 +8,23 @@ public class EmptyTileScript : MonoBehaviour
     [SerializeField] TableManager tm;
     [SerializeField] Sprite upSide;
     [SerializeField] Sprite downSide;
+    SpriteRenderer sprite;
     bool isActive;
     //bool isEmpty;
     bool isOpen;
 
+    private void Start()
+    {
+        sprite = gameObject.GetComponent<SpriteRenderer>(); 
+    }
 
     public void ClipDown()
     {
-        Debug.Log("Tile down");
+        //Debug.Log("Tile down");
         if (!isOpen)
         {
             isOpen = true;
-            gameObject.GetComponent<SpriteRenderer>().sprite = upSide;
+            sprite.sprite = upSide;
         }
         
         te.RunTileEffect();
@@ -32,7 +37,8 @@ public class EmptyTileScript : MonoBehaviour
         gameObject.transform.position = coord;
         SetActive(false);
         isOpen = false;
-        gameObject.GetComponent<SpriteRenderer>().sprite = downSide;
+        
+        sprite.sprite = downSide;
         //isEmpty = false;
     }
 
@@ -41,16 +47,31 @@ public class EmptyTileScript : MonoBehaviour
        // Debug.Log(tmp);
         if (tmp)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            sprite.color = Color.green;
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            sprite.color = Color.white;
         }
       //  if (isEmpty && tmp) 
         isActive = tmp;
     }
 
+    public void SetActive(bool tmp, Vector2 coord)
+    {
+        // Debug.Log(tmp);
+        if (tmp)
+        {
+            sprite.color = Color.green;
+        }
+        else
+        {
+            sprite.color = Color.white;
+        }
+        //  if (isEmpty && tmp) 
+        isActive = tmp;
+        te.ActivatePanel(coord);
+    }
     //public void SetEmpty(bool tmp)
     //{
     //    isEmpty = tmp;
@@ -66,9 +87,5 @@ public class EmptyTileScript : MonoBehaviour
         return isActive;
     }
 
-     void SetClipInHere(int playerTag)
-    {
-
-    }
 
 }

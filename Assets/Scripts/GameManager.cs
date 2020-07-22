@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         {
             activePlayer = 0;
         }
-        Debug.Log(activePlayer);
+        //Debug.Log(activePlayer);
         pc[activePlayer].StartClipSelect();
     }
 

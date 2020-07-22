@@ -12,6 +12,7 @@ public class TableManager : MonoBehaviour
     Dictionary<Vector2, EmptyTileScript> tilesOnField = new Dictionary<Vector2, EmptyTileScript>();
 
     [SerializeField] bool isClipChoose;
+    public Vector2 chosenClipCoord;
     
 
     // Start is called before the first frame update
@@ -43,7 +44,7 @@ public class TableManager : MonoBehaviour
                 {                    
                     if (tilesOnField[tmp].GetActive())
                     {
-                        Debug.Log("Tile chosen");
+                        //Debug.Log("Tile chosen");
                         tilesOnField[tmp].ClipDown();
                     }
                 }
@@ -55,6 +56,7 @@ public class TableManager : MonoBehaviour
     public void StartSelection(Vector2 clipCoord)
     {
         isClipChoose = true;
+        chosenClipCoord = clipCoord;
         for (int i = -1;i<=1;i++)
         {
             for (int j = -1;j<=1;j++)
@@ -66,7 +68,7 @@ public class TableManager : MonoBehaviour
                     Vector2 tmp = new Vector2(clipCoord.x + i, clipCoord.y + j);
                     if (IsExists(tmp))
                     {
-                        tilesOnField[tmp].SetActive(true);
+                        tilesOnField[tmp].SetActive(true, clipCoord);
                     }
                 }
             }
@@ -134,6 +136,14 @@ public class TableManager : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public void SetActivateSingleTile(Vector2 coord, Vector2 clipCoord, bool tmp)
+    {
+        if (IsExists(coord))
+        {
+            tilesOnField[coord].SetActive(tmp, clipCoord);
         }
     }
 }

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class TileEffect : MonoBehaviour
 {
-    public void RunTileEffect()
-    {
-
-    }
-
+    public virtual void RunTileEffect() { }
+    public virtual void ActivatePanel(Vector2 tmp) { }
 }
