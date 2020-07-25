@@ -12,6 +12,7 @@ public class EmptyTileScript : MonoBehaviour
     bool isActive;
     //bool isEmpty;
     bool isOpen;
+    bool isWater;
 
     private void Start()
     {
@@ -25,19 +26,29 @@ public class EmptyTileScript : MonoBehaviour
         {
             isOpen = true;
             sprite.sprite = upSide;
+            te.RunTileEffect();
+        }
+        else
+        {
+            te.RunTileEffect();
+            TurnEnd();
         }
         
-        te.RunTileEffect();
+        
        // isEmpty = false;
+        
+    }
+
+    public void TurnEnd()
+    {
         tm.TurnEnd(gameObject.transform.position);
     }
 
     public void StartPrep(Vector2 coord)
     {
-        gameObject.transform.position = coord;
+        gameObject.transform.position = new Vector3(coord.x, coord.y, 0);
         SetActive(false);
         isOpen = false;
-        
         sprite.sprite = downSide;
         //isEmpty = false;
     }
@@ -70,12 +81,14 @@ public class EmptyTileScript : MonoBehaviour
         }
         //  if (isEmpty && tmp) 
         isActive = tmp;
-        te.ActivatePanel(coord);
+        if (isOpen) te.ActivatePanel(coord);
     }
     //public void SetEmpty(bool tmp)
     //{
     //    isEmpty = tmp;
     //}
+
+
 
     public bool GetOpen()
     {
@@ -87,5 +100,9 @@ public class EmptyTileScript : MonoBehaviour
         return isActive;
     }
 
+    public bool GetWater()
+    {
+        return isWater;
+    }
 
 }

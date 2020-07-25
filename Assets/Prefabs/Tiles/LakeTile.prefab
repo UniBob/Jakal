@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1976251117825417702}
   - component: {fileID: 7631510798938241287}
   m_Layer: 0
-  m_Name: wood_red (151)
+  m_Name: LakeTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1592958893
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f5425a0f15175a94a86977331e6bd124, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   te: {fileID: 7631510798938241287}
   tm: {fileID: 0}
-  upSide: {fileID: 21300000, guid: f101f8ef833a8c24cbcaf41ff826cc80, type: 3}
-  downSide: {fileID: 21300000, guid: ed07b19b18cf87d468b8c3271673f693, type: 3}
+  upSide: {fileID: 21300000, guid: 148ed64b7186fd440b70f6bb065d397f, type: 3}
+  downSide: {fileID: 21300000, guid: 1910fcb04b5a8454bbca54c4b51301a0, type: 3}
 --- !u!114 &7631510798938241287
 MonoBehaviour:
   m_ObjectHideFlags: 0

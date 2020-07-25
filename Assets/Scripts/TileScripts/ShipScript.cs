@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClipScript : MonoBehaviour
+public class ShipScript : MonoBehaviour
 {
     [SerializeField] PlayerController pc;
 
     [SerializeField] bool isActive;
     [SerializeField] int clipTag;
-    
+
     public void SetActive(bool tmp)
     {
         // Debug.Log("Clip" + tmp);
@@ -38,7 +38,9 @@ public class PlayerClipScript : MonoBehaviour
         if (isActive)
         {
             Vector2 tmp = new Vector2(Mathf.Round(gameObject.transform.position.x), Mathf.Round(gameObject.transform.position.y));
-            pc.EndSelection(tmp, clipTag);
+            pc.EndSelection(tmp, 1);
         }
     }
+
+
 }

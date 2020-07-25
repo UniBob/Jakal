@@ -42,9 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Panel
+  - name: Tile
     uniqueID: 2702008403
     locked: 0
-  - name: clip
+  - name: Clip
     uniqueID: 3274582323
     locked: 0

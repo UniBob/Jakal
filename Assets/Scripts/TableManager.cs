@@ -74,7 +74,29 @@ public class TableManager : MonoBehaviour
             }
         }
     }
-       
+
+    public void StartSelection(Vector2 clipCoord, int just)
+    {
+        isClipChoose = true;
+        chosenClipCoord = clipCoord;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == j && i == 0)
+                { }
+                else
+                {
+                    Vector2 tmp = new Vector2(clipCoord.x + i, clipCoord.y + j);
+                    if (IsExists(tmp))
+                    {
+                        if (tilesOnField[tmp].GetWater()) tilesOnField[tmp].SetActive(true, clipCoord);
+                    }
+                }
+            }
+        }
+    }
+
     void BoardSet()
     {
         isClipChoose = false;
@@ -139,11 +161,25 @@ public class TableManager : MonoBehaviour
         }
     }
 
-    public void SetActivateSingleTile(Vector2 coord, Vector2 clipCoord, bool tmp)
+    public void SetActivateSingleTile(Vector2 tileToActivateCoord, Vector2 clipCoord, bool tmp)
     {
-        if (IsExists(coord))
+        if (IsExists(tileToActivateCoord))
         {
-            tilesOnField[coord].SetActive(tmp, clipCoord);
+            if (tilesOnField[tileToActivateCoord].GetActive() != tmp)
+            {
+                tilesOnField[tileToActivateCoord].SetActive(tmp, clipCoord);
+            }
+        }
+    }
+
+    public void SetActivateSingleTile(Vector2 tileToActivateCoord, bool tmp)
+    {
+        if (IsExists(tileToActivateCoord))
+        {
+            if (tilesOnField[tileToActivateCoord].GetActive() != tmp)
+            {
+                tilesOnField[tileToActivateCoord].SetActive(tmp);
+            }
         }
     }
 }
