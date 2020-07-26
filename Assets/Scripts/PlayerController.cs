@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
 
     void CheckOnSameTile()
     {
-        if ((clips[0].gameObject.transform.position == clips[1].gameObject.transform.position) && (clips[2].gameObject.transform.position == clips[1].gameObject.transform.position))
+        if (CompareVector(clips[0].gameObject.transform.position, clips[1].gameObject.transform.position) && CompareVector(clips[2].gameObject.transform.position, clips[1].gameObject.transform.position))
         {
             Vector3 position = new Vector3(-0.25f, 0.25f, 0);
             var tmp = position;
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         else
-            if ((clips[0].gameObject.transform.position == clips[1].gameObject.transform.position))
+            if (CompareVector(clips[0].gameObject.transform.position, clips[1].gameObject.transform.position))
         {
             Vector3 position = new Vector3(-0.25f, 0.25f, 0);
             clips[0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x) - position.x, Mathf.Round(clips[2].gameObject.transform.position.y) - position.y, 0);
         }
         else
-                if ((clips[2].gameObject.transform.position == clips[1].gameObject.transform.position))
+                if (CompareVector(clips[2].gameObject.transform.position , clips[1].gameObject.transform.position))
         {
             Vector3 position = new Vector3(-0.25f, 0.25f, 0);
             clips[1].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
             clips[2].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x) - position.x, Mathf.Round(clips[2].gameObject.transform.position.y) - position.y, 0);
         }   
         else
-        if ((clips[2].gameObject.transform.position == clips[0].gameObject.transform.position))
+        if (CompareVector(clips[2].gameObject.transform.position, clips[0].gameObject.transform.position))
         {
             Vector3 position = new Vector3(-0.25f, 0.25f, 0);
             clips[0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -128,6 +128,11 @@ public class PlayerController : MonoBehaviour
                 clip.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             }
         }
+    }
+
+    bool CompareVector(Vector3 first, Vector3 second)
+    {
+        return ((Mathf.Round(first.x) == Mathf.Round(second.x)) && (Mathf.Round(first.y) == Mathf.Round(second.y)));
     }
 
     public void RetutnToShip(Vector3 coord)
