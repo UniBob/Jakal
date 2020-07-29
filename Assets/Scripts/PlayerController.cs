@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     int selectClipTag;
     bool isClip;
 
-    int coinAmount;
-
     public void StartPreparation()
     {
         for(int i = 0;i<clips.Count;i++)
@@ -20,18 +18,6 @@ public class PlayerController : MonoBehaviour
             clips[i].SetActive(false);
             clips[i].SetTag(i);
         }
-    }
-
-    public bool CheckToAddCoins(Vector3 coord)
-    {
-        foreach (PlayerClipScript clip in clips)
-        {
-            if (!clip.isTakingCoin && (clip.gameObject.transform.position == coord))
-            {
-                clip.TakeCoin();
-            }
-        }
-        return false;
     }
 
     public void StartClipSelect()
@@ -101,7 +87,7 @@ public class PlayerController : MonoBehaviour
             foreach (var clip in clips)
             {
                 clip.gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                clip.gameObject.transform.position = new Vector3 (Mathf.Round(clip.gameObject.transform.position.x) + position.x, Mathf.Round(clip.gameObject.transform.position.y) + position.y, 0);
+                clip.gameObject.transform.position = clip.gameObject.transform.position + position;
                 position = position - tmp;
             }
         }
@@ -112,9 +98,8 @@ public class PlayerController : MonoBehaviour
             clips[0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[1].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[2].gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            clips[2].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x), Mathf.Round(clips[2].gameObject.transform.position.y), 0);
             clips[1].gameObject.transform.position = new Vector3(Mathf.Round(clips[1].gameObject.transform.position.x) + position.x, Mathf.Round(clips[1].gameObject.transform.position.y) + position.y, 0);
-            clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[0].gameObject.transform.position.x) - position.x, Mathf.Round(clips[0].gameObject.transform.position.y) - position.y, 0);
+            clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x) - position.x, Mathf.Round(clips[2].gameObject.transform.position.y) - position.y, 0);
         }
         else
                 if ((clips[2].gameObject.transform.position == clips[1].gameObject.transform.position))
@@ -123,7 +108,6 @@ public class PlayerController : MonoBehaviour
             clips[1].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[2].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[0].gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[0].gameObject.transform.position.x), Mathf.Round(clips[0].gameObject.transform.position.y), 0);
             clips[1].gameObject.transform.position = new Vector3(Mathf.Round(clips[1].gameObject.transform.position.x) + position.x, Mathf.Round(clips[1].gameObject.transform.position.y) + position.y, 0);
             clips[2].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x) - position.x, Mathf.Round(clips[2].gameObject.transform.position.y) - position.y, 0);
         }   
@@ -134,8 +118,7 @@ public class PlayerController : MonoBehaviour
             clips[0].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[2].gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             clips[1].gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-            clips[1].gameObject.transform.position = new Vector3(Mathf.Round(clips[1].gameObject.transform.position.x), Mathf.Round(clips[1].gameObject.transform.position.y), 0);
-            clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[0].gameObject.transform.position.x) + position.x, Mathf.Round(clips[0].gameObject.transform.position.y) + position.y, 0);
+            clips[0].gameObject.transform.position = new Vector3(Mathf.Round(clips[1].gameObject.transform.position.x) + position.x, Mathf.Round(clips[1].gameObject.transform.position.y) + position.y, 0);
             clips[2].gameObject.transform.position = new Vector3(Mathf.Round(clips[2].gameObject.transform.position.x) - position.x, Mathf.Round(clips[2].gameObject.transform.position.y) - position.y, 0);
         }
         else
@@ -143,11 +126,6 @@ public class PlayerController : MonoBehaviour
             foreach (PlayerClipScript clip in clips)
             {
                 clip.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                Vector3 tmp;
-                tmp.x = Mathf.Round(clip.gameObject.transform.position.x);
-                tmp.y = Mathf.Round(clip.gameObject.transform.position.y);
-                tmp.z = 0;
-                clip.gameObject.transform.position = tmp;
             }
         }
     }
@@ -159,24 +137,8 @@ public class PlayerController : MonoBehaviour
             if (clip.gameObject.transform.position == coord)
             {
                 clip.gameObject.transform.position = ship.gameObject.transform.position;
-                if (clip.isTakingCoin)
-                {
-                    clip.DropCoin();
-                    CheckCoins(coord);
-                }
             }
         }
         CheckOnSameTile();
-    }
-
-    public void CheckCoins(Vector3 coord)
-    {
-        foreach (PlayerClipScript clip in clips)
-        {
-            if (!clip.isTakingCoin)
-            {
-                clip.TakeCoin();
-            }
-        }
     }
 }
