@@ -12,7 +12,7 @@ public class EmptyTileScript : MonoBehaviour
     bool isActive;
     //bool isEmpty;
     bool isOpen;
-    bool isWater;
+    [SerializeField] bool isWater;
 
     private void Start()
     {
@@ -26,11 +26,11 @@ public class EmptyTileScript : MonoBehaviour
         {
             isOpen = true;
             sprite.sprite = upSide;
-            te.RunTileEffect();
+            te.RunTileEffect(tm.chosenClipCoord);
         }
         else
         {
-            te.RunTileEffect();
+            te.RunTileEffect(tm.chosenClipCoord);
             TurnEnd();
         }
         
@@ -46,6 +46,7 @@ public class EmptyTileScript : MonoBehaviour
 
     public void StartPrep(Vector2 coord)
     {
+        tm = FindObjectOfType<TableManager>();
         gameObject.transform.position = new Vector3(coord.x, coord.y, 0);
         SetActive(false);
         isOpen = false;

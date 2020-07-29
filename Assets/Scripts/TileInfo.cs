@@ -7,8 +7,7 @@ using UnityEngine;
 public class TileInfo : ScriptableObject
 {
     public List<EmptyTileScript> tilesToRandom;
-    public List<GameObject> allTiles;
+    public List<EmptyTileScript> allTiles;
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] int playersCount;
 }
 
