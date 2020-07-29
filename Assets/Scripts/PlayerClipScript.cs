@@ -8,20 +8,46 @@ public class PlayerClipScript : MonoBehaviour
 
     [SerializeField] bool isActive;
     [SerializeField] int clipTag;
-    
+    public bool isTakingCoin;
+
+
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Sprite clipWithCoin;
+    [SerializeField] Sprite clipWithoutCoin;
+
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+        isTakingCoin = false;
+        sprite.sprite = clipWithoutCoin;
+    }
+
     public void SetActive(bool tmp)
     {
         // Debug.Log("Clip" + tmp);
         if (tmp)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            sprite.color = Color.green;
         }
         else
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            sprite.color = Color.white;
         }
         isActive = tmp;
     }
+
+    public void TakeCoin()
+    {
+        sprite.sprite = clipWithCoin;
+        isTakingCoin = true;
+    }
+
+    public void DropCoin()
+    {
+        sprite.sprite = clipWithoutCoin;
+        isTakingCoin = false;
+    }
+
 
     public bool GetActive()
     {

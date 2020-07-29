@@ -9,6 +9,8 @@ public class TableManager : MonoBehaviour
     [SerializeField] Vector2 upLeftPoint;
     [SerializeField] GameManager gm;
 
+    [SerializeField] EmptyTileScript water;
+
     Dictionary<Vector2, EmptyTileScript> tilesOnField = new Dictionary<Vector2, EmptyTileScript>();
 
     [SerializeField] bool isClipChoose;
@@ -18,7 +20,7 @@ public class TableManager : MonoBehaviour
     // Start is called before the first frame update
     public void StartPrepare()
     {
-        TempTableSet();
+        BoardSet();
     }
 
     public void TurnEnd(Vector2 coord)
@@ -107,18 +109,23 @@ public class TableManager : MonoBehaviour
         for (float i = upLeftPoint.x; i <= -upLeftPoint.x; i++) 
         {
             for (float j = upLeftPoint.y; j >= -upLeftPoint.y; j--) 
-            {   
+            {
+                
                 if (info.allTiles[allI] == null)
                 {
+                    //EmptyTileScript tmp = Instantiate(info.tilesToRandom[emptyI]) as EmptyTileScript;
                     Vector2 tmpCoord = new Vector2(i, j);
-                    tilesOnField.Add(new Vector2(i, j), info.tilesToRandom[emptyI].GetComponent<EmptyTileScript>());
+                    tilesOnField.Add(new Vector2(i, j), info.tilesToRandom[emptyI]);
+                    Instantiate(tilesOnField[tmpCoord]);
                     tilesOnField[tmpCoord].StartPrep(tmpCoord);
                     emptyI++;
                 }
                 else
                 {
+                    //EmptyTileScript tmp = Instantiate(info.allTiles[allI]) as EmptyTileScript;
                     Vector2 tmpCoord = new Vector2(i, j);
                     tilesOnField.Add(new Vector2(i, j), info.allTiles[allI].GetComponent<EmptyTileScript>());
+                    Instantiate(info.allTiles[allI]);
                     tilesOnField[tmpCoord].StartPrep(tmpCoord);                    
                 }
                 allI++;
@@ -182,4 +189,10 @@ public class TableManager : MonoBehaviour
             }
         }
     }
+
+    public void GiveACoin(Vector3 coord)
+    {
+        gm.GiveACoin(coord);
+    }
+
 }

@@ -55,13 +55,18 @@ public class GameManager : MonoBehaviour
         tm.StartSelection(clipCoord);
     }
 
-    public void StartTileSelect(Vector2 clipCoord, int just)
-    {
-        tm.StartSelection(clipCoord, 1);
-    }
 
-    public Vector2 GectChosenClipCoord()
+    public Vector2 GetChosenClipCoord()
     {
         return pc[activePlayer].GetChosenClipCoord();
     }
+
+    public void GiveACoin(Vector3 coord)
+    {
+        foreach (PlayerController player in pc)
+        {
+            player.CheckCoins(coord);
+        }
+    }
+
 }
