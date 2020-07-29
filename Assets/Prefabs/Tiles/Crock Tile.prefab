@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1713488177541859226}
   - component: {fileID: 1713488177541859225}
   - component: {fileID: 1713488177541859224}
-  - component: {fileID: 1713488177541859227}
   - component: {fileID: 5745611075148668122}
   m_Layer: 0
   m_Name: Crock Tile
@@ -98,20 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   te: {fileID: 5745611075148668122}
   tm: {fileID: 0}
-  upSide: {fileID: 21300000, guid: 98ae5e1dd85739245aef28dcf500d184, type: 3}
-  downSide: {fileID: 21300000, guid: 1910fcb04b5a8454bbca54c4b51301a0, type: 3}
---- !u!114 &1713488177541859227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713488177541859205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188e027e801e8c64e919894d56e44001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  upSide: {fileID: 21300000, guid: 388871bec1c54f448bf342ecc38df912, type: 3}
+  downSide: {fileID: 21300000, guid: 873da5b144f1ccc4d81aac2deabb510e, type: 3}
 --- !u!114 &5745611075148668122
 MonoBehaviour:
   m_ObjectHideFlags: 0
